@@ -7,6 +7,7 @@ document.getElementById('energyForm').addEventListener('submit', function(e) {
     const consumoTotalPeriodo = parseFloat(document.getElementById('consumoTotalPeriodo').value);
     const valorConsumo = parseFloat(document.getElementById('valorConsumo').value);
     const valorConta = parseFloat(document.getElementById('valorConta').value);
+    const valorBandeira = parseFloat(document.getElementById('valorBandeira').value) || 0;
     
     // Validar se a leitura atual é maior que a anterior
     if (casaCimaMesAtual < casaCimaMesAnterior) {
@@ -36,20 +37,24 @@ document.getElementById('energyForm').addEventListener('submit', function(e) {
     const proporcaoCasaCima = consumoTotalPeriodo > 0 ? (consumoCasaCima / consumoTotalPeriodo) * 100 : 0;
     const proporcaoCasaBaixo = consumoTotalPeriodo > 0 ? (consumoCasaBaixo / consumoTotalPeriodo) * 100 : 0;
     
-    // Calcular encargos extras
-    const encargosExtras = valorConta - valorConsumo;
+    // Calcular encargos extras totais (valor total - valor consumo - bandeira)
+    const encargosExtras = valorConta - valorConsumo - valorBandeira;
     
     // Calcular valores do consumo de cada casa (proporcional ao consumo em kWh)
     const valorConsumoCasaCima = valorConsumo * (proporcaoCasaCima / 100);
     const valorConsumoCasaBaixo = valorConsumo * (proporcaoCasaBaixo / 100);
     
-    // Calcular encargos extras de cada casa (proporcional ao consumo)
-    const encargosCasaCima = encargosExtras * (proporcaoCasaCima / 100);
-    const encargosCasaBaixo = encargosExtras * (proporcaoCasaBaixo / 100);
+    // Calcular encargos extras de cada casa (divididos 50/50)
+    const encargosCasaCima = encargosExtras / 2;
+    const encargosCasaBaixo = encargosExtras / 2;
     
-    // Calcular valores totais a pagar (consumo + encargos proporcionais)
-    const valorCasaCima = valorConsumoCasaCima + encargosCasaCima;
-    const valorCasaBaixo = valorConsumoCasaBaixo + encargosCasaBaixo;
+    // Calcular bandeira tarifária de cada casa (proporcional ao consumo)
+    const bandeiraCasaCima = consumoTotalPeriodo > 0 ? valorBandeira * (consumoCasaCima / consumoTotalPeriodo) : valorBandeira / 2;
+    const bandeiraCasaBaixo = consumoTotalPeriodo > 0 ? valorBandeira * (consumoCasaBaixo / consumoTotalPeriodo) : valorBandeira / 2;
+    
+    // Calcular valores totais a pagar (consumo + encargos 50/50 + bandeira proporcional)
+    const valorCasaCima = valorConsumoCasaCima + encargosCasaCima + bandeiraCasaCima;
+    const valorCasaBaixo = valorConsumoCasaBaixo + encargosCasaBaixo + bandeiraCasaBaixo;
     
     // Exibir resultados
     document.getElementById('consumoCasaCima').textContent = formatarKWh(consumoCasaCima);
@@ -65,8 +70,11 @@ document.getElementById('energyForm').addEventListener('submit', function(e) {
     
     // Exibir detalhamento
     document.getElementById('encargosExtras').textContent = formatarMoeda(encargosExtras);
+    document.getElementById('bandeiraTotal').textContent = formatarMoeda(valorBandeira);
     document.getElementById('encargosCasaCima').textContent = formatarMoeda(encargosCasaCima);
     document.getElementById('encargosCasaBaixo').textContent = formatarMoeda(encargosCasaBaixo);
+    document.getElementById('bandeiraCasaCima').textContent = formatarMoeda(bandeiraCasaCima);
+    document.getElementById('bandeiraCasaBaixo').textContent = formatarMoeda(bandeiraCasaBaixo);
     document.getElementById('valorConsumoCasaCima').textContent = formatarMoeda(valorConsumoCasaCima);
     document.getElementById('valorConsumoCasaBaixo').textContent = formatarMoeda(valorConsumoCasaBaixo);
     

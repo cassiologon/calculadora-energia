@@ -10,7 +10,7 @@
     <div class="container">
         <header>
             <h1>⚡ Calculadora de Energia</h1>
-            <p class="subtitle">Divisão Proporcional da Conta de Luz</p>
+            <p class="subtitle">Divisão Proporcional da Conta de Luz V2</p>
         </header>
 
         <main>
@@ -43,6 +43,11 @@
                         <label for="valorConta">Valor Total da Conta de Luz (R$):</label>
                         <input type="number" id="valorConta" step="0.01" min="0" required>
                         <small class="input-hint">Valor total a pagar (com todos os encargos)</small>
+                    </div>
+                    <div class="input-group">
+                        <label for="valorBandeira">Valor da Bandeira Tarifária (R$) - opcional:</label>
+                        <input type="number" id="valorBandeira" step="0.01" min="0" value="0">
+                        <small class="input-hint">Valor da bandeira (verde, amarela ou vermelha) - deixe 0 se não houver</small>
                     </div>
                 </section>
 
@@ -96,29 +101,41 @@
                             <span class="value" id="valorTotalVerificado">R$ 0,00</span>
                         </div>
                     </div>
+                </div>
 
-                    <div class="result-card">
-                        <h3>Detalhamento</h3>
-                        <div class="result-item">
-                            <span class="label">Encargos Extras (Total):</span>
-                            <span class="value" id="encargosExtras">R$ 0,00</span>
-                        </div>
-                        <div class="result-item">
-                            <span class="label">Casa de Cima - Encargos:</span>
-                            <span class="value" id="encargosCasaCima">R$ 0,00</span>
-                        </div>
-                        <div class="result-item">
-                            <span class="label">Casa de Baixo - Encargos:</span>
-                            <span class="value" id="encargosCasaBaixo">R$ 0,00</span>
-                        </div>
-                        <div class="result-item">
-                            <span class="label">Casa de Cima - Consumo:</span>
-                            <span class="value" id="valorConsumoCasaCima">R$ 0,00</span>
-                        </div>
-                        <div class="result-item">
-                            <span class="label">Casa de Baixo - Consumo:</span>
-                            <span class="value" id="valorConsumoCasaBaixo">R$ 0,00</span>
-                        </div>
+                <div class="result-card result-card-full">
+                    <h3>Detalhamento</h3>
+                    <div class="result-item">
+                        <span class="label">Encargos Extras (Total):</span>
+                        <span class="value" id="encargosExtras">R$ 0,00</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="label">Bandeira Tarifária (Total):</span>
+                        <span class="value" id="bandeiraTotal">R$ 0,00</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="label">Casa de Cima - Encargos (50/50):</span>
+                        <span class="value" id="encargosCasaCima">R$ 0,00</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="label">Casa de Baixo - Encargos (50/50):</span>
+                        <span class="value" id="encargosCasaBaixo">R$ 0,00</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="label">Casa de Cima - Bandeira (Proporcional):</span>
+                        <span class="value" id="bandeiraCasaCima">R$ 0,00</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="label">Casa de Baixo - Bandeira (Proporcional):</span>
+                        <span class="value" id="bandeiraCasaBaixo">R$ 0,00</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="label">Casa de Cima - Consumo:</span>
+                        <span class="value" id="valorConsumoCasaCima">R$ 0,00</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="label">Casa de Baixo - Consumo:</span>
+                        <span class="value" id="valorConsumoCasaBaixo">R$ 0,00</span>
                     </div>
                 </div>
 
