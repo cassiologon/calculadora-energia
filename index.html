@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Energia - Divisão de Conta</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>⚡ Calculadora de Energia</h1>
+            <p class="subtitle">Divisão Proporcional da Conta de Luz</p>
+        </header>
+
+        <main>
+            <form id="energyForm">
+                <section class="form-section">
+                    <h2>Casa de Cima - Medidor Específico</h2>
+                    <div class="input-group">
+                        <label for="casaCimaMesAnterior">Leitura do Mês Anterior (kWh):</label>
+                        <input type="number" id="casaCimaMesAnterior" step="0.01" min="0" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="casaCimaMesAtual">Leitura do Mês Atual (kWh):</label>
+                        <input type="number" id="casaCimaMesAtual" step="0.01" min="0" required>
+                    </div>
+                </section>
+
+                <section class="form-section">
+                    <h2>Informações da Conta de Luz (Energisa)</h2>
+                    <div class="input-group">
+                        <label for="consumoTotalPeriodo">Consumo Total do Período (kWh) - da conta:</label>
+                        <input type="number" id="consumoTotalPeriodo" step="0.01" min="0" required>
+                        <small class="input-hint">Este valor já vem na sua conta de luz da Energisa</small>
+                    </div>
+                    <div class="input-group">
+                        <label for="valorConsumo">Valor do Consumo de Energia (R$) - da conta:</label>
+                        <input type="number" id="valorConsumo" step="0.01" min="0" required>
+                        <small class="input-hint">Valor do consumo (sem encargos extras, impostos, taxas)</small>
+                    </div>
+                    <div class="input-group">
+                        <label for="valorConta">Valor Total da Conta de Luz (R$):</label>
+                        <input type="number" id="valorConta" step="0.01" min="0" required>
+                        <small class="input-hint">Valor total a pagar (com todos os encargos)</small>
+                    </div>
+                </section>
+
+                <button type="submit" class="btn-calculate">Calcular</button>
+            </form>
+
+            <div id="results" class="results hidden">
+                <h2>Resultados do Cálculo</h2>
+                
+                <div class="results-grid">
+                    <div class="result-card">
+                        <h3>Consumos do Mês</h3>
+                        <div class="result-item">
+                            <span class="label">Casa de Cima:</span>
+                            <span class="value" id="consumoCasaCima">0 kWh</span>
+                        </div>
+                        <div class="result-item">
+                            <span class="label">Casa de Baixo:</span>
+                            <span class="value" id="consumoCasaBaixo">0 kWh</span>
+                        </div>
+                        <div class="result-item highlight">
+                            <span class="label">Total:</span>
+                            <span class="value" id="consumoTotal">0 kWh</span>
+                        </div>
+                    </div>
+
+                    <div class="result-card">
+                        <h3>Proporções</h3>
+                        <div class="result-item">
+                            <span class="label">Casa de Cima:</span>
+                            <span class="value" id="proporcaoCasaCima">0%</span>
+                        </div>
+                        <div class="result-item">
+                            <span class="label">Casa de Baixo:</span>
+                            <span class="value" id="proporcaoCasaBaixo">0%</span>
+                        </div>
+                    </div>
+
+                    <div class="result-card highlight-card">
+                        <h3>Valores a Pagar</h3>
+                        <div class="result-item highlight">
+                            <span class="label">Casa de Cima:</span>
+                            <span class="value" id="valorCasaCima">R$ 0,00</span>
+                        </div>
+                        <div class="result-item highlight">
+                            <span class="label">Casa de Baixo:</span>
+                            <span class="value" id="valorCasaBaixo">R$ 0,00</span>
+                        </div>
+                        <div class="result-item">
+                            <span class="label">Total:</span>
+                            <span class="value" id="valorTotalVerificado">R$ 0,00</span>
+                        </div>
+                    </div>
+
+                    <div class="result-card">
+                        <h3>Detalhamento</h3>
+                        <div class="result-item">
+                            <span class="label">Encargos Extras (Total):</span>
+                            <span class="value" id="encargosExtras">R$ 0,00</span>
+                        </div>
+                        <div class="result-item">
+                            <span class="label">Casa de Cima - Encargos:</span>
+                            <span class="value" id="encargosCasaCima">R$ 0,00</span>
+                        </div>
+                        <div class="result-item">
+                            <span class="label">Casa de Baixo - Encargos:</span>
+                            <span class="value" id="encargosCasaBaixo">R$ 0,00</span>
+                        </div>
+                        <div class="result-item">
+                            <span class="label">Casa de Cima - Consumo:</span>
+                            <span class="value" id="valorConsumoCasaCima">R$ 0,00</span>
+                        </div>
+                        <div class="result-item">
+                            <span class="label">Casa de Baixo - Consumo:</span>
+                            <span class="value" id="valorConsumoCasaBaixo">R$ 0,00</span>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="button" class="btn-reset" onclick="resetForm()">Novo Cálculo</button>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
