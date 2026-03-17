@@ -11,7 +11,7 @@ document.getElementById('energyForm').addEventListener('submit', function(e) {
     
     // Validar se a leitura atual é maior que a anterior
     if (casaCimaMesAtual < casaCimaMesAnterior) {
-        alert('Erro: A leitura atual da casa de cima não pode ser menor que a do mês anterior!');
+        alert('Erro: A leitura atual da casa de baixo não pode ser menor que a do mês anterior!');
         return;
     }
     
@@ -26,7 +26,7 @@ document.getElementById('energyForm').addEventListener('submit', function(e) {
     
     // Validar se o consumo da casa de cima não é maior que o total
     if (consumoCasaCima > consumoTotalPeriodo) {
-        alert('Erro: O consumo da casa de cima não pode ser maior que o consumo total do período!');
+        alert('Erro: O consumo da casa de baixo não pode ser maior que o consumo total do período!');
         return;
     }
     
