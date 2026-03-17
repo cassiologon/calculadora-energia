@@ -21,17 +21,17 @@ document.getElementById('energyForm').addEventListener('submit', function(e) {
         return;
     }
     
-    // Calcular consumo da casa de cima no período
-    const consumoCasaCima = casaCimaMesAtual - casaCimaMesAnterior;
+    // Calcular consumo da casa de baixo no período (medidor específico informado no formulário)
+    const consumoCasaBaixo = casaCimaMesAtual - casaCimaMesAnterior;
     
-    // Validar se o consumo da casa de cima não é maior que o total
-    if (consumoCasaCima > consumoTotalPeriodo) {
+    // Validar se o consumo da casa de baixo não é maior que o total
+    if (consumoCasaBaixo > consumoTotalPeriodo) {
         alert('Erro: O consumo da casa de baixo não pode ser maior que o consumo total do período!');
         return;
     }
     
-    // Calcular consumo da casa de baixo
-    const consumoCasaBaixo = consumoTotalPeriodo - consumoCasaCima;
+    // Calcular consumo da casa de cima
+    const consumoCasaCima = consumoTotalPeriodo - consumoCasaBaixo;
     
     // Calcular proporções baseadas no consumo
     const proporcaoCasaCima = consumoTotalPeriodo > 0 ? (consumoCasaCima / consumoTotalPeriodo) * 100 : 0;
